@@ -1,9 +1,15 @@
 package pokemon;
 
+import pokemon.model.Ataque;
+import pokemon.model.Pokemon;
+import pokemon.model.TipoPoke;
+import pokemon.services.PeleaService;
+
+//sdfjng
 public class AppPoke {
     public static void main(String[] args) {
 
-        Ataque ascuas=new Ataque("Ascuas",10,TipoPoke.FUEGO);
+        Ataque ascuas=new Ataque("Ascuas",10, TipoPoke.FUEGO);
         Ataque lanzallamas=new Ataque("Lanzallamas",15,TipoPoke.FUEGO);
         Ataque llamarada=new Ataque("Llamarada",20,TipoPoke.FUEGO);
         Ataque burbuja=new Ataque("Burbuja",10,TipoPoke.AGUA);
@@ -55,13 +61,9 @@ public class AppPoke {
         Pokemon geodude=new Pokemon("Geodude",100,1,TipoPoke.ROCA,ataqueGeodude);
 
 
-
-
-
-
-
-        System.out.println(squartle);
-
+        PeleaService.PeleaPokemon(charmander,squartle);
+        PeleaService.PeleaPokemon(squartle,charmander);
+        //System.out.println(squartle);
 
     }
 }
