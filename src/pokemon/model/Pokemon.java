@@ -6,6 +6,7 @@ public class Pokemon {
     private int vidaActual;
     private int vidaMaxima;
     private int nivel;
+    private int experiencia;
     private TipoPoke tipo;
     private Ataque[] ataques;
 
@@ -31,6 +32,7 @@ public class Pokemon {
         this.nombre = nombre;
         this.vidaMaxima=vidaMaxima;
         this.nivel = nivel;
+        experiencia=0;
         this.tipo = tipo;
     }
     //CONSTRUCTOR
@@ -40,6 +42,7 @@ public class Pokemon {
         this.nombre = nombre;
         this.vidaMaxima = vidaMaxima;
         this.nivel = nivel;
+        experiencia=0;
         this.tipo = tipo;
         ataques = new Ataque[4];
     }
@@ -65,6 +68,14 @@ public class Pokemon {
     public void setNivel(int nivel) {
         this.nivel = nivel;
     }
+    //GETTER EXPERIENCIA
+    public int getExperiencia() {
+        return experiencia;
+    }
+    //SETTER EXPERIENCIA
+    public void setExperiencia(int experiencia) {
+        this.experiencia = experiencia;
+    }
 
     //GETTER VIDA ACTUAL
     public int getVidaActual() {
@@ -85,6 +96,14 @@ public class Pokemon {
     //SETTER VIDA MAXIMA
     public void setVidaMaxima(int vidaMaxima) {
         this.vidaMaxima = vidaMaxima;
+    }
+    //GETTER
+    public boolean isDead(){
+        return isDead;
+    }
+    // SETTER
+    public void setDead(boolean isDead){
+        this.isDead=isDead;
     }
 
     public void quitarVida(int damage){

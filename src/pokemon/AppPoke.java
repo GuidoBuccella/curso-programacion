@@ -61,8 +61,7 @@ public class AppPoke {
         Pokemon geodude=new Pokemon("Geodude",100,1,TipoPoke.ROCA,ataqueGeodude);
 
 
-        PeleaService.PeleaPokemon(charmander,squartle);
-        PeleaService.PeleaPokemon(squartle,charmander);
+        PeleaService.peleaPokemon(charmander,bulbasor);
         //System.out.println(squartle);
 
     }
