@@ -60,8 +60,13 @@ public class AppPoke {
         Ataque[] ataqueGeodude={lanzarrocas,avalancha,placaje,ataqueRapido};
         Pokemon geodude=new Pokemon("Geodude",100,1,TipoPoke.ROCA,ataqueGeodude);
 
+        Pokemon [] listaPokemon={charmander,squartle, bulbasor, pikachu,
+                                caterpie, pidget, ratata, geodude};
 
-        PeleaService.peleaPokemon(charmander,bulbasor);
+        PeleaService.inicioPelea(listaPokemon);
+        PeleaService.inicioPelea(listaPokemon);
+        PeleaService.inicioPelea(listaPokemon);
+
         //System.out.println(squartle);
 
     }

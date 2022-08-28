@@ -7,6 +7,7 @@ public class Pokemon {
     private int vidaMaxima;
     private int nivel;
     private int experiencia;
+    private int experienciaMaxima;
     private TipoPoke tipo;
     private Ataque[] ataques;
 
@@ -33,6 +34,7 @@ public class Pokemon {
         this.vidaMaxima=vidaMaxima;
         this.nivel = nivel;
         experiencia=0;
+        experienciaMaxima=100;
         this.tipo = tipo;
     }
     //CONSTRUCTOR
@@ -43,6 +45,7 @@ public class Pokemon {
         this.vidaMaxima = vidaMaxima;
         this.nivel = nivel;
         experiencia=0;
+        experienciaMaxima=100;
         this.tipo = tipo;
         ataques = new Ataque[4];
     }
@@ -75,6 +78,14 @@ public class Pokemon {
     //SETTER EXPERIENCIA
     public void setExperiencia(int experiencia) {
         this.experiencia = experiencia;
+    }
+    //GETTER EXPERIENCIA MAXIMA
+    public int getEperienciaMaxima() {
+        return experienciaMaxima;
+    }
+    //SETTER EXPERIENCIA MAXIMA
+    public void setExperienciaMaxima(int experienciaMaxima){
+        this.experienciaMaxima=experienciaMaxima;
     }
 
     //GETTER VIDA ACTUAL
@@ -111,6 +122,14 @@ public class Pokemon {
         if (vidaActual<=0){
             vidaActual=0;
             isDead=true;
+        }
+    }
+    public void subeExperiencia(int experienciaGanada){
+        experiencia=experiencia+experienciaGanada;
+        if (experiencia>=experienciaMaxima) {
+            experiencia = experiencia - experienciaMaxima;
+            nivel++;
+            experienciaMaxima+=20;
         }
     }
 
