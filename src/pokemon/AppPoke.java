@@ -64,10 +64,5 @@ public class AppPoke {
                                 caterpie, pidget, ratata, geodude};
 
         PeleaService.inicioPelea(listaPokemon);
-        PeleaService.inicioPelea(listaPokemon);
-        PeleaService.inicioPelea(listaPokemon);
-
-        //System.out.println(squartle);
-
     }
 }

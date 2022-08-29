@@ -4,35 +4,39 @@ import javax.swing.*;
 import pokemon.model.Ataque;
 import pokemon.model.Pokemon;
 import pokemon.model.TipoPoke;
+import pokemon.utils.PokemonUtils;
 
 public class PeleaService {
 
     public static void inicioPelea(Pokemon [] listaPokemon){
-        Pokemon jugador1=seleccionaPokemon(listaPokemon);
-        Pokemon jugador2=seleccionaPokemon(listaPokemon);
-        PeleaService.peleaPokemon(jugador1,jugador2);
+
+        Pokemon jugador1=seleccionaPokemon(listaPokemon,"Jugador 1");
+        Pokemon jugador2=seleccionaPokemon(listaPokemon,"Jugador 2");
+        PeleaService.peleaPokemon(jugador1,jugador2,listaPokemon);
     }
 
-    public static Pokemon seleccionaPokemon(Pokemon [] listaPokemon){
+    public static Pokemon seleccionaPokemon(Pokemon [] listaPokemon,String player){
 
         String [] eleccionPokemon=new String[listaPokemon.length];
 
         for (int i=0;i<listaPokemon.length;i++){
             eleccionPokemon[i]=listaPokemon[i].getNombre();
         }
-        int pokemonElegido=JOptionPane.showOptionDialog(
+        String pokemonElegido=(String) JOptionPane.showInputDialog(
                 null,
-                "Elige un Pokemon",
-                "Seleccion de Pokemon",
-                0,JOptionPane.QUESTION_MESSAGE,
-                null,eleccionPokemon,
+                player + ": Elige un Pokemon de la lista para poder pelear",
+                "Seleccione un Pokemon",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                eleccionPokemon,
                 "");
-        Pokemon jugador=listaPokemon[pokemonElegido];
-        return jugador;
 
+        Pokemon jugador=PokemonUtils.cualPokemon(pokemonElegido,listaPokemon);
+        System.out.println(player + " ha elegido a " + jugador.getNombre());
+        return jugador;
     }
 
-    public static void atacaPokemon(Pokemon figther1, Pokemon figther2){
+    public static void atacaPokemon(Pokemon figther1, Pokemon figther2, String player){
 
         String[] nombreAtaques=new String[4];
 
@@ -44,7 +48,7 @@ public class PeleaService {
         }
         int posicionElegida=JOptionPane.showOptionDialog(
                 null,
-                "Elige un ataque",
+                player+"Elige un ataque",
                 "Batalla Pokemon",
                 0,
                 JOptionPane.QUESTION_MESSAGE,
@@ -66,29 +70,38 @@ public class PeleaService {
             System.out.println(figther2.getNombre() + " se debilito por completo");
         }
     }
-    public static void peleaPokemon(Pokemon fighter1,Pokemon fighter2) {
+    public static void peleaPokemon(Pokemon fighter1,Pokemon fighter2,Pokemon []listaPokemon) {
         Pokemon pokemonGanador;
+        String jugadorGanador;
         int nivelGanador;
 
         while (!(fighter1.isDead()||fighter2.isDead())) {
-            PeleaService.atacaPokemon(fighter1, fighter2);
+            PeleaService.atacaPokemon(fighter1, fighter2,"Jugador 1: ");
             if(!(fighter2.isDead())){
-                PeleaService.atacaPokemon(fighter2, fighter1);
+                PeleaService.atacaPokemon(fighter2, fighter1,"Jugador 2: ");
             }
         }
         if(fighter1.isDead()){
             nivelGanador=fighter2.getNivel();
             fighter2.subeExperiencia(100);
             pokemonGanador=fighter2;
+            jugadorGanador="Jugador 2";
 
         } else{
             nivelGanador=fighter1.getNivel();
             fighter1.subeExperiencia(100);
             pokemonGanador = fighter1;
+            jugadorGanador="Jugador 1";
         }
         if (nivelGanador<pokemonGanador.getNivel()){
             System.out.println(pokemonGanador.getNombre() + " ha subido al nivel " + pokemonGanador.getNivel()+"!. Felicitaciones!");
         }
         System.out.println("El pokemon ganador es: "+ pokemonGanador.getNombre() + ". Ahora tiene " + pokemonGanador.getExperiencia()+ " puntos de experiencia");
+        JOptionPane.showMessageDialog(null,"Felicitaciones "+jugadorGanador+ ", tu "+ pokemonGanador.getNombre() + ", ha ganado la batalla!\nAhora la vida de tu "+pokemonGanador.getNombre()+" es "+pokemonGanador.getVidaActual()+"/"+pokemonGanador.getVidaMaxima()+"\nY su nivel es "+pokemonGanador.getNivel(),"Resultado de Pelea Pokemon",JOptionPane.INFORMATION_MESSAGE);
+
+        int respuesta=JOptionPane.showConfirmDialog(null,"Deseas seguir peleando?","Selecciona un opción",JOptionPane.YES_NO_OPTION);
+        if (respuesta==0){
+            inicioPelea(listaPokemon);
+        }else System.out.println("Hasta la próxima!");
     }
 }
