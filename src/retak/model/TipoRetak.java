@@ -1,4 +1,4 @@
-package retak;
+package retak.model;
 
 public enum TipoRetak {
 
