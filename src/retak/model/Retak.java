@@ -93,6 +93,9 @@ public class Retak {
     public void addStock(int unidades){
         cantidadStock=cantidadStock+unidades;
     }
+    public void decreaseStock(int sell){
+        cantidadStock=cantidadStock-sell;
+    }
     public void checkStock(){
         System.out.println("El Stock actual de los " + nombre+ " es de: " + cantidadStock+ " unidades.");
     }

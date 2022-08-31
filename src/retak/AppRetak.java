@@ -38,10 +38,10 @@ public class AppRetak {
         Retak dintel20x250x25= new Retak(TipoRetak.DINTEL,"Dintel de 20x250(x25)",20,250,90,0);
 
         //    ESCALERA
-        Retak escalon17_5x150x25= new Retak(TipoRetak.ESCALON,"Escalon",17.5,150,43.4,0);
+        Retak escalon17_5x150x25= new Retak(TipoRetak.ESCALON,"Escalon (17_5x150x25)",17.5,150,43.4,0);
 
         //   PLACA DE AISLACION
-        Retak placaAislacion5x50x25=new Retak(TipoRetak.PLACA_AISLACION,"Placa de Aislación de 5(x50x25)",50,5,4.2,34);
+        Retak placaAislacion5x50x25=new Retak(TipoRetak.PLACA_AISLACION,"Placa de Aislación de 5(x50x25)",5,50,4.2,0);
 
         Retak[] listaStock={ladrillo7_5,ladrillo10,ladrillo12_5,ladrillo15,ladrillo17_5,ladrillo20,
                 ladrillo10x60x25,ladrillo15x60x25,dintel10x150x25,dintel10x200x25,dintel10x250x25,
@@ -50,7 +50,9 @@ public class AppRetak {
                 dintel20x200x25,dintel20x250x25,escalon17_5x150x25,placaAislacion5x50x25};
 
         ladrillo10.addStock(80);
+        StockService.makeOrder(listaStock);
         StockService.printStock(listaStock);
+        ladrillo10.getCantidadStock();
 
 
 
