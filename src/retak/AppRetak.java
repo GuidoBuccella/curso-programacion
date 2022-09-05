@@ -49,10 +49,14 @@ public class AppRetak {
                 dintel15x250x25,dintel17_5x150x25,dintel17_5x200x25,dintel17_5x250x25,dintel20x150x25,
                 dintel20x200x25,dintel20x250x25,escalon17_5x150x25,placaAislacion5x50x25};
 
-        ladrillo10.addStock(80);
+        for (int i=0;i<listaStock.length;i++){
+            listaStock[i].addStock(80);
+            System.out.println(listaStock[i].getNombre()+": "+listaStock[i].getCantidadStock()+" unidades");
+        }
+
         StockService.makeOrder(listaStock);
         StockService.printStock(listaStock);
-        ladrillo10.getCantidadStock();
+
 
 
 
