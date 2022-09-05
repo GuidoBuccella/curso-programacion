@@ -1,5 +1,6 @@
 package retak;
 
+import retak.model.PedidoRetak;
 import retak.model.Retak;
 import retak.model.TipoRetak;
 import retak.services.StockService;
@@ -48,6 +49,7 @@ public class AppRetak {
                 dintel12_5x150x25,dintel12_5x200x25,dintel12_5x250x25,dintel15x150x25,dintel15x200x25,
                 dintel15x250x25,dintel17_5x150x25,dintel17_5x200x25,dintel17_5x250x25,dintel20x150x25,
                 dintel20x200x25,dintel20x250x25,escalon17_5x150x25,placaAislacion5x50x25};
+
 
         for (int i=0;i<listaStock.length;i++){
             listaStock[i].addStock(80);
