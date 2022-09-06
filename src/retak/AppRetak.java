@@ -57,6 +57,7 @@ public class AppRetak {
         }
 
         StockService.makeOrder(listaStock);
+        System.out.println("\n, \n, \n, \n");
         StockService.printStock(listaStock);
 
 
