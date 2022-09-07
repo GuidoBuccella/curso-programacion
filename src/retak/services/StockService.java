@@ -21,10 +21,12 @@ public class StockService {
         PedidoRetak[] nuevoPedido=new PedidoRetak[25];
         int numeroSiguiente=0;
 
+
         for (int i = 0; i < lista.length; i++) {
             productoAelegir[i] = lista[i].getNombre();
         }
         boolean seguirComprando = true;
+
         while (seguirComprando) {
             String productoElegido = (String) JOptionPane.showInputDialog(
                     null,
@@ -43,87 +45,110 @@ public class StockService {
             String[] opciones = {"Agregar stock disponible a la compra", "Cancelar compra",
                     "Volver a lista de productos", "Contactarse con sector compras"};
 
-            String cantidad = JOptionPane.showInputDialog("Cuantas unidades deseas pedir?");
-            int unidades = Integer.parseInt(cantidad);
-
-            if (unidades > stockActual) {
-
-                String respuesta = (String) JOptionPane.showInputDialog(
-                        null,
-                        "No hay suficiente Stock de " + productoElegido + " para completar su pedido. \n" +
-                                "Podemos ofrecerle " + Integer.toString(stockActual) + " unidades en este momento.\n" +
-                                " Elija una opción:",
-                        "Sin suficiente stock. Seleccione una opción",
-                        JOptionPane.QUESTION_MESSAGE,
-                        null,
-                        opciones,
-                        "");
-                if (respuesta.equals(opciones[0])) {
-                    for (int i = 0; i < lista.length; i++) {
-                        if (lista[i].getNombre().equals(productoElegido)) {
-                            lista[i].decreaseStock(lista[i].getCantidadStock());
-                            JOptionPane.showMessageDialog(
-                                    null,
-                                    "Se ha agregado su pedido a la compra",
-                                    "Mensaje",
-                                    JOptionPane.INFORMATION_MESSAGE,
-                                    null);
-                            PedidoRetak pedido=new PedidoRetak(productoElegido,stockActual);
-                            nuevoPedido[numeroSiguiente]=pedido;
-                            numeroSiguiente++;
-                        }
-                    }
-                } else if (respuesta.equals(opciones[1])) {
-                    JOptionPane.showMessageDialog(
+            if (productoElegido==null){
+                seguirComprando=false;
+                JOptionPane.showMessageDialog(
                         null,
                         "Muchas gracias por su consulta",
                         "Mensaje",
                         JOptionPane.INFORMATION_MESSAGE,
                         null);
-                    seguirComprando=false;
 
-                } else if (respuesta.equals(opciones[3])) {
-                JOptionPane.showMessageDialog(
-                        null,
-                        "Comunicarse al 0249-154309995",
-                        "Sector Compras",
-                        JOptionPane.INFORMATION_MESSAGE,
-                        null);
-                    seguirComprando=false;
-                }
-            } else if (unidades <= stockActual) {
 
-                for (int i = 0; i < lista.length; i++) {
-                    if (lista[i].getNombre().equals(productoElegido)) {
-                        lista[i].decreaseStock(unidades);
+            }else {
+                String cantidad = JOptionPane.showInputDialog("Cuantas unidades deseas pedir?");
+                int unidades = Integer.parseInt(cantidad);
+
+
+                if (unidades > stockActual) {
+
+                    String respuesta = (String) JOptionPane.showInputDialog(
+                            null,
+                            "No hay suficiente Stock de " + productoElegido + " para completar su pedido. \n" +
+                                    "Podemos ofrecerle " + Integer.toString(stockActual) + " unidades en este momento.\n" +
+                                    " Elija una opción:",
+                            "Sin suficiente stock. Seleccione una opción",
+                            JOptionPane.QUESTION_MESSAGE,
+                            null,
+                            opciones,
+                            "");
+                    if (respuesta.equals(opciones[0])) {
+                        for (int i = 0; i < lista.length; i++) {
+                            if (lista[i].getNombre().equals(productoElegido)) {
+                                lista[i].decreaseStock(lista[i].getCantidadStock());
+                                JOptionPane.showMessageDialog(
+                                        null,
+                                        "Se ha agregado su pedido a la compra",
+                                        "Mensaje",
+                                        JOptionPane.INFORMATION_MESSAGE,
+                                        null);
+                                PedidoRetak pedido=new PedidoRetak(productoElegido,stockActual);
+                                nuevoPedido[numeroSiguiente]=pedido;
+                                numeroSiguiente++;
+                            }
+                        }
+                    } else if (respuesta.equals(opciones[1])) {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Muchas gracias por su consulta",
+                                "Mensaje",
+                                JOptionPane.INFORMATION_MESSAGE,
+                                null);
+                        seguirComprando=false;
+
+                    } else if (respuesta.equals(opciones[3])) {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Comunicarse al 0249-154309995",
+                                "Sector Compras",
+                                JOptionPane.INFORMATION_MESSAGE,
+                                null);
+                        seguirComprando=false;
+                    }
+                } else if (unidades <= stockActual) {
+
+                    PedidoRetak pedido = new PedidoRetak(productoElegido, unidades);
+                    nuevoPedido[numeroSiguiente] = pedido;
+                    numeroSiguiente++;
+
+                    for (int i = 0; i < lista.length; i++) {
+                        if (lista[i].getNombre().equals(productoElegido)) {
+                            lista[i].decreaseStock(unidades);
+                        }
                     }
                 }
-                PedidoRetak pedido = new PedidoRetak(productoElegido, unidades);
-                nuevoPedido[numeroSiguiente] = pedido;
-                numeroSiguiente++;
-            }
-            int confirmado = JOptionPane.showConfirmDialog(
+                String productoPedido="";
+                for (int i=0;i< nuevoPedido.length;i++) {
+                    if (nuevoPedido[i]!=null) {
+                        productoPedido = productoPedido + nuevoPedido[i]+"\n";
+                    }
+                }
+                int confirmado = JOptionPane.showConfirmDialog(
                         null,
-                        "Su pedido hasta ahora es: " +nuevoPedido + "Deseas agregar otro producto a tu compra?",
+                        "Su pedido hasta ahora es: "+"\n"+ productoPedido + "\n" +"Deseas agregar otro producto a tu compra?",
                         "Selecciona una opción",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE,
                         null);
-            if (confirmado==1) {
-                seguirComprando = false;
-                JOptionPane.showMessageDialog(
-                        null,
-                        productoElegido + ": " + unidades + " unidades" + "\n" + "\n" + "Personal de compras se comunicará contigo para coordinar el envío",
-                        "Tu pedido es el siguiente:",
-                        JOptionPane.INFORMATION_MESSAGE,
-                        null);
-                String numeroContacto = JOptionPane.showInputDialog(
-                        null,
-                        "Dejanos tu número de celular para contactarnos contigo" + "\n" + "Muchas gracias por tu pedido",
-                        "Informacion de contacto",
-                        JOptionPane.QUESTION_MESSAGE);
-                System.out.println("Nos contactaremos brevemente al siguiente número: " + numeroContacto);
-            }else;
+                if (confirmado==1) {
+                    seguirComprando = false;
+                    JOptionPane.showMessageDialog(
+                            null,
+                            productoPedido + "\n" + "\n" + "Personal de compras se comunicará contigo para coordinar el envío",
+                            "Tu pedido es el siguiente:",
+                            JOptionPane.INFORMATION_MESSAGE,
+                            null);
+
+
+                    String numeroContacto = JOptionPane.showInputDialog(
+                            null,
+                            "Dejanos tu número de celular para contactarnos contigo" + "\n" + "Muchas gracias por tu pedido",
+                            "Informacion de contacto",
+                            JOptionPane.QUESTION_MESSAGE);
+                    System.out.println("Nos contactaremos brevemente al siguiente número: " + numeroContacto);
+
+                }else;
+            }
         }
     }
 }
