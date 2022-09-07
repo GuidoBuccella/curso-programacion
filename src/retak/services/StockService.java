@@ -60,7 +60,6 @@ public class StockService {
                 int unidades = Integer.parseInt(cantidad);
 
 
-
                 if (unidades > stockActual) {
 
                     String respuesta = (String) JOptionPane.showInputDialog(
@@ -139,12 +138,15 @@ public class StockService {
                             "Tu pedido es el siguiente:",
                             JOptionPane.INFORMATION_MESSAGE,
                             null);
+
+
                     String numeroContacto = JOptionPane.showInputDialog(
                             null,
                             "Dejanos tu número de celular para contactarnos contigo" + "\n" + "Muchas gracias por tu pedido",
                             "Informacion de contacto",
                             JOptionPane.QUESTION_MESSAGE);
                     System.out.println("Nos contactaremos brevemente al siguiente número: " + numeroContacto);
+
                 }else;
             }
         }
