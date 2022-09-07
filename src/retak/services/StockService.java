@@ -54,7 +54,6 @@ public class StockService {
                         JOptionPane.INFORMATION_MESSAGE,
                         null);
 
-
             }else {
                 String cantidad = JOptionPane.showInputDialog("Cuantas unidades deseas pedir?");
                 int unidades = Integer.parseInt(cantidad);
