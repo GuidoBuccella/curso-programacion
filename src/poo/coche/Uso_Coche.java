@@ -1,4 +1,6 @@
-package poo;
+package poo.coche;
+import poo.coche.Coche;
+
 import javax.swing.*;
 
 public class Uso_Coche {

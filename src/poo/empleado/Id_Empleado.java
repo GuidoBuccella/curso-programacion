@@ -1,4 +1,4 @@
-package poo;
+package poo.empleado;
 
 public class Id_Empleado {
     public static void main(String[] args) {

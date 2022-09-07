@@ -1,4 +1,6 @@
-package poo;
+package poo.empleado;
+
+import poo.empleado.Empleado;
 
 public class UsoEmpleado {
     public static void main(String[] args) {
