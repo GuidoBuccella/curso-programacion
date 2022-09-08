@@ -18,8 +18,9 @@ public class CiudadesApp {
         for (int i=0;i< ciudades.length;i++){
 
             int roundPopulation= CiudadService.ciudadRound(ciudades[i].getPoblacion());
-            Ciudad ciudad=new Ciudad()
+            Ciudad ciudad=new Ciudad(ciudades[i].getNombre(),roundPopulation);
         }
+
 
 
 
