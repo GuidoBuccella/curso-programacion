@@ -4,6 +4,7 @@ public abstract class Persona {
 
     private String nombre;
 
+    // CONSTRUCTOR
     public Persona(String nom){
         nombre=nom;
     }

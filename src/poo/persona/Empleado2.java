@@ -5,6 +5,11 @@ import java.util.GregorianCalendar;
 
 public class Empleado2 extends Persona{
 
+    private double sueldo;
+    private Date altaContrato;
+    private int Id;
+    private static int IdSiguiente = 1;
+
     public Empleado2 (String nom, double sue, int year, int month, int day){
 
         super(nom);
@@ -14,11 +19,6 @@ public class Empleado2 extends Persona{
         Id = IdSiguiente;
         IdSiguiente++;
     }
-    private double sueldo;
-    private Date altaContrato;
-    private int Id;
-    private static int IdSiguiente = 1;
-
     public String dameDescripcion(){
         return "Este empleado tiene un Id= "+ Id + " con un sueldo= "+sueldo;
     }
