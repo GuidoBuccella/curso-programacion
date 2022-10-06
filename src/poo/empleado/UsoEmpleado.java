@@ -2,6 +2,8 @@ package poo.empleado;
 
 import poo.empleado.Empleado;
 
+import java.util.Arrays;
+
 public class UsoEmpleado {
     public static void main(String[] args) {
         /*Empleado empleado1 = new Empleado("Guido Buccella", 120000, 2020, 12, 17);
@@ -30,6 +32,7 @@ public class UsoEmpleado {
         misEmpleados[3]=new Empleado("Gabriel");
         misEmpleados[4]=jefeRRHH; //POLIMORFISMO EN ACCION. PRINCIPIO DE SUSTITUCION
         misEmpleados[5]=new Jefatura("Maria",95000,2021,8,10);
+        Jefatura jefa_finanzas=(Jefatura) misEmpleados[5];
 
         misEmpleados[2].cambiaSeccion("RRHH");
 
@@ -41,9 +44,31 @@ public class UsoEmpleado {
                     misEmpleados[i].dameSueldo() + ". Fecha de alta: " + misEmpleados[i].dameFechaContrato());
         }*/
 
+
+        Empleado director_comercial=new Jefatura("Sandra",85000,2012,05,05);
+
+        Comparable ejemplo=new Empleado("Elizabeth",95000,2011,06,07);
+
+        if (director_comercial instanceof Empleado){
+            System.out.println("Es de tipo jefatura");
+        }
+        if (ejemplo instanceof Comparable){
+            System.out.println("Implementa la interfaz comparable");
+        }
+        System.out.println(jefa_finanzas.tomar_decisiones("Dar mas dias de vacaciones a los empleados"));
+
+        System.out.println("El jefe "+ jefa_finanzas.dameNombre() + " tiene un bonus de: " +
+                + jefa_finanzas.establece_bonus(500));
+
+        System.out.println(misEmpleados[3].dameNombre()+" tiene un bonus de: "+
+                misEmpleados[3].establece_bonus(200));
+
         for (Empleado e:misEmpleados){
             e.subeSueldo(10);
         }
+
+        Arrays.sort(misEmpleados);
+
         for (Empleado e:misEmpleados){
             System.out.println("Nombre: " + e.dameNombre() +
                     ". Sueldo: " + e.dameSueldo() +

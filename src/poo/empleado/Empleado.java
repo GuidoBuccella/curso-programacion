@@ -3,7 +3,7 @@ package poo.empleado;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class Empleado  {
+public class Empleado implements Comparable,Trabajadores {
 
     private final String nombre;
     private double sueldo;
@@ -51,5 +51,19 @@ public class Empleado  {
     }
     public static String dameIdSiguiente() {         //SETTER
         return "El id Siguiente es: " + IdSiguiente;
+    }
+
+    public double establece_bonus(double gratificacion){
+        return Trabajadores.bonus_base+gratificacion;
+    }
+    public int compareTo(Object miObjeto){
+        Empleado otroEmpleado=(Empleado) miObjeto;
+        if (this.sueldo< otroEmpleado.sueldo){
+            return -1;
+        }
+        if (this.sueldo> otroEmpleado.sueldo){
+            return 1;
+        }
+        return 0;
     }
 }
