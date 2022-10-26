@@ -18,11 +18,34 @@ public class CuentasUsuarios {
         clientesBanco.add(cl4);
         clientesBanco.add(cl5);
 
+        /*for (Cliente cliente:clientesBanco) {  //ESTE NO FUNCIONA PORQUE NO SE PUEDE REMOVER
+                                                   CON BUCLE FOR EACH
+
+            if (cliente.getNombre().equals("Eliana")){
+                clientesBanco.remove(cliente);
+            }
+
+        }*/
+        Iterator<Cliente> it= clientesBanco.iterator();
+        while (it.hasNext()){
+
+            String nombreCliente=it.next().getNombre();
+            if (nombreCliente.equals("Eliana")){
+                it.remove();
+            }
+
+        }
+
         for (Cliente cliente:clientesBanco) {
             System.out.println("Nombre cliente: "+cliente.getNombre()+
                     ". Numero de cuenta: "+cliente.getNroCuenta()+". " +
                     "saldo: "+cliente.getSaldo());
 
         }
+       /* Iterator <Cliente> it= clientesBanco.iterator();
+        while (it.hasNext()){
+            String nombreCliente=it.next().getNombre();
+            System.out.println(nombreCliente);
+        }*/
     }
 }
